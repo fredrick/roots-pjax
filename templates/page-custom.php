@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Default
+Template Name: Custom
 */
 include('meta.php');
 ?>

@@ -1,15 +1,15 @@
 <?php
 /**
- * Thematic PJAX
- * A Thematic child theme made responsive
+ * Roots PJAX
+ * WordPress meets HTML5 Boilerplate, Bootstrap, and PJAX, a Roots Child Theme
  */
 
 define('ROOTSPJAX_URL', get_bloginfo('stylesheet_directory'));
 
-class ThematicPJAX {
+class RootsPJAX {
     public static function load() {
         wp_enqueue_script('pjax', ROOTSPJAX_URL . '/pjax/jquery.pjax.js', array('jquery'));
-        wp_enqueue_script('thematic-pjax', ROOTSPJAX_URL . '/thematic-pjax.js', array('jquery', 'pjax'));
+        wp_enqueue_script('thematic-pjax', ROOTSPJAX_URL . '/roots-pjax.js', array('jquery', 'pjax'));
     }
 
     /**
