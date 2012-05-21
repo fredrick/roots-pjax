@@ -5,5 +5,7 @@ Description:    WordPress meets HTML5 Boilerplate, Bootstrap, and PJAX, a Roots 
 Author:         Fredrick Galoso
 Author URI:     http://fredrickgaloso.me/
 Template:       roots
-Version:        0.1.0
+Version:        0.1
 */
+
+@import url('../roots/style.css');
