@@ -3,7 +3,7 @@ Roots PJAX
 
 > WordPress meets HTML5 Boilerplate, Bootstrap, and PJAX
 
-Roots PJAX extends the [Roots](http://www.rootstheme.com/) WordPress theme to add PJAX to HTML5 Boilerplate and Bootstrap from Twitter.
+Roots PJAX extends the [Roots](http://www.rootstheme.com/) WordPress theme to add PJAX to [HTML5 Boilerplate](http://html5boilerplate.com/) and [Bootstrap](http://twitter.github.com/bootstrap/) from Twitter.
 
 Roots PJAX makes asynchronous layouts in WordPress a reality, which combined with the existing components of Roots, is a powerful and full featured starting point for your next WordPress project.
 
