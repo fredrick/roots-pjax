@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Custom
+Template Name: Front Page
 */
 require('meta.php');
 ?>

@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Custom
+Template Name: Search
 */
 require('meta.php');
 ?>
@@ -8,8 +8,11 @@ require('meta.php');
   <div id="content" class="<?php echo CONTAINER_CLASSES; ?>">
   <?php roots_main_before(); ?>
     <div id="main" class="<?php echo MAIN_CLASSES; ?>" role="main">
+      <div class="page-header">
+        <h1><?php _e('Search Results for', 'roots'); ?> <?php echo get_search_query(); ?></h1>
+      </div>
       <?php roots_loop_before(); ?>
-      <?php get_template_part('loop', 'page'); ?>
+      <?php get_template_part('loop', 'search'); ?>
       <?php roots_loop_after(); ?>
     </div><!-- /#main -->
   <?php roots_main_after(); ?>

@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Custom
+Template Name: Index
 */
 require('meta.php');
 ?>
@@ -8,9 +8,10 @@ require('meta.php');
   <div id="content" class="<?php echo CONTAINER_CLASSES; ?>">
   <?php roots_main_before(); ?>
     <div id="main" class="<?php echo MAIN_CLASSES; ?>" role="main">
-      <?php roots_loop_before(); ?>
-      <?php get_template_part('loop', 'page'); ?>
-      <?php roots_loop_after(); ?>
+      <div class="page-header">
+        <h1><?php _e('Latest Posts', 'roots');?></h1>
+      </div>
+      <?php get_template_part('loop', 'index'); ?>
     </div><!-- /#main -->
   <?php roots_main_after(); ?>
   <?php roots_sidebar_before(); ?>

@@ -2,7 +2,7 @@
 /*
 Template Name: Default
 */
-include('meta.php');
+require('meta.php');
 ?>
 <?php roots_content_before(); ?>
   <div id="content" class="<?php echo CONTAINER_CLASSES; ?>">

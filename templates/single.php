@@ -1,9 +1,10 @@
 <?php
 /*
-Template Name: Full Width
+Template Name: Single
 */
-include('meta.php');
+require('meta.php');
 ?>
+<?php if (!is_attachment()) { ?>
 <?php roots_content_before(); ?>
   <div id="content" class="<?php echo CONTAINER_CLASSES; ?>">
   <?php roots_main_before(); ?>
@@ -22,3 +23,4 @@ include('meta.php');
   <?php roots_sidebar_after(); ?>
   </div><!-- /#content -->
 <?php roots_content_after(); ?>
+<?php } ?>
