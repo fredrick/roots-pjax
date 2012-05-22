@@ -11,7 +11,7 @@ Roots PJAX makes asynchronous layouts in WordPress a reality, which combined wit
 
 ##Getting Started
 
-1. [Install](https://github.com/retlehs/roots/#quick-start) and activate Roots
+1. [Install](https://github.com/retlehs/roots/#quick-start) and activate Roots.
 2. [Download](https://github.com/wayoutmind/roots-pjax/zipball/master) and extract Roots PJAX in the WordPress `themes` folder.
 3. Add [custom functionality](https://github.com/wayoutmind/roots-pjax/blob/master/functions.php#L10-11) in `functions.php` and [style to taste](https://github.com/wayoutmind/roots-pjax/blob/master/style.css) within `style.css`.
 4. Activate the Roots PJAX theme in the WordPress Dashboard.
