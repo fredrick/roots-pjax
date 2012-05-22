@@ -7,7 +7,7 @@ Roots PJAX extends the [Roots](http://www.rootstheme.com/) WordPress theme to ad
 
 Roots PJAX makes asynchronous layouts in WordPress a reality, which combined with the existing components of Roots, is a powerful and full featured starting point for your next WordPress project.
 
-PJAX "loads html from your server into the current page without a full page load. It's AJAX with real permalinks, page titles, and a working back button that fully degrades." Browsing just "feels faster" and makes mixing and matching static and dynamic site elements a breeze. By default, PJAX loads content asynchronously within the `#wrap` div, providing load once static functionality to the header and the footer.
+[PJAX](http://pjax.heroku.com/) "loads html from your server into the current page without a full page load. It's AJAX with real permalinks, page titles, and a working back button that fully degrades." Browsing just "feels faster" and makes mixing and matching static and dynamic site elements a breeze. By default, PJAX loads content asynchronously within the `#wrap` div, providing load once static functionality to the header and the footer.
 
 ##Getting Started
 
