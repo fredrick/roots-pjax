@@ -13,7 +13,8 @@
   $(document).ready(function() {
     /** Load PJAX on navigation interaction
       */
-    $('a:not(:has(img))').pjax('#wrap').live('click', function() {
+    $('a:not(:has(img))').pjax('#wrap');
+    $('body').delegate('a', 'click', function() {
       var activeClasses = [
         'current-menu-item',
         'current-menu-parent',
