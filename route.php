@@ -40,12 +40,12 @@ class RootsPJAX {
         } else if (is_search()) {
           require('templates/search.php');
           exit;
-        } else if (is_home()) {
-          if (is_front_page()) {
-            require('templates/front-page.php');
+        } else if (is_front_page()) {
+          if (is_home()) {
+            require('templates/index.php');
             exit;
           } else {
-            require('templates/index.php');
+            require('templates/front-page.php');
             exit;
           }
         }
