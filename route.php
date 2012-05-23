@@ -51,7 +51,7 @@ class RootsPJAX {
           require('templates/search.php');
           exit;
         } else if (is_front_page()) {
-          // Front page, untemplated default/posts page
+          // Front page, default/posts page
           require('templates/front-page.php');
           exit;
         }
@@ -61,7 +61,7 @@ class RootsPJAX {
           exit;
         } else {
           // Untemplated default
-          require('templates/front-page.php');
+          require('templates/page.php');
           exit;
         }
       }
