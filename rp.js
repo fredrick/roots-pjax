@@ -14,15 +14,23 @@
     /** Load PJAX on navigation interaction
       */
     $('a:not(:has(img))').pjax('#wrap').live('click', function() {
-      $('.active').removeClass('current-menu-item active');
-      $('.active').removeClass('current_page_parent active');
-      $(this).parent().addClass('current-menu-item active');
+      var activeClasses = [
+        'current-menu-item',
+        'current-menu-parent',
+        'current-menu-ancestor',
+        'current_page_item',
+        'current_page_parent',
+        'current_page_ancestor',
+        'active'
+      ].join(' ');
+      $('.active').removeClass(activeClasses);
+      $(this).parent().addClass('active');
     });
     /** Watch PJAX requests so metadata in document can be modified dynamically
       */
     $('body').bind('pjax:start', function() {
       $(this).ajaxSuccess(function(event, request, settings) {
-          // Body Class
+        // Body Class
         var classes = request.getResponseHeader('X-WordPress-Body-Class');
         $(this).attr('class', classes);
         var link = {
