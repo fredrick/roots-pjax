@@ -35,7 +35,7 @@ class RootsPJAX {
         require('templates/' . $template_name);
         exit;
       } else {
-      // Untemplated page types
+      // Untemplated page
         if (is_single()) {
           require('templates/single.php');
           exit;
