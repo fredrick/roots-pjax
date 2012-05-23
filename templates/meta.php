@@ -2,6 +2,10 @@
 /** 
  * Supply metadata
  */
+
+// Start output_buffer
+ob_start();
+
 header('X-WordPress-Body-Class: ' . join(' ', get_body_class()));
 header('X-WordPress-Link-Canonical: ' . get_permalink());
 
@@ -18,5 +22,9 @@ if (!is_singular()) {
 
 header('X-WordPress-Title-Previous: ' . get_the_title($previous_id));
 header('X-WordPress-Title-Next: ' . get_the_title($next_id));
+
+ob_end_clean();
+// End output buffer
+
 ?>
 <title><?php wp_title('|', true, 'right'); bloginfo('name'); ?></title>
