@@ -19,19 +19,21 @@
      * Filter PJAX requests
      */
     $.ajaxPrefilter(function(options, pjax, xhr) {
-      var request = new XMLHttpRequest();
-      request.open('HEAD', pjax.url, true);
-      request.onreadystatechange = function() {
-        if (this.readyState === this.DONE) {
-          var isHTML = (request.getResponseHeader('Content-Type').indexOf('text/html') !== -1);
-          var isPJAX = (!!options.container && !!options.clickedElement);
-          if (!options.crossDomain && !isHTML && isPJAX) {
-            xhr.abort();
-            window.location.href = pjax.url;
+      var isPJAX = (!!options.container && !!options.clickedElement);
+      if (isPJAX && !options.crossDomain) {
+        var request = new XMLHttpRequest();
+        request.open('HEAD', pjax.url, true);
+        request.onreadystatechange = function() {
+          if (this.readyState === this.DONE) {
+            var isHTML = (request.getResponseHeader('Content-Type').indexOf('text/html') !== -1);
+            if (!isHTML) {
+              xhr.abort();
+              window.location.href = pjax.url;
+            }
           }
         }
+        request.send();
       }
-      request.send();
     });
     /**
      * Update static DOM nodes
