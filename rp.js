@@ -11,9 +11,31 @@
 
 (function($){
   $(document).ready(function() {
-    /** Load PJAX on navigation interaction
-      */
+    /**
+     * Load PJAX
+     */
     $('a:not(:has(img))').pjax('#wrap');
+    /**
+     * Filter PJAX requests
+     */
+    $.ajaxPrefilter(function(options, pjax, xhr) {
+      var request = new XMLHttpRequest();
+      request.open('HEAD', pjax.url, true);
+      request.onreadystatechange = function() {
+        if (this.readyState === this.DONE) {
+          var isHTML = (request.getResponseHeader('Content-Type').indexOf('text/html') !== -1);
+          var isPJAX = (!!options.container && !!options.clickedElement);
+          if (!options.crossDomain && !isHTML && isPJAX) {
+            xhr.abort();
+            window.location.href = pjax.url;
+          }
+        }
+      }
+      request.send();
+    });
+    /**
+     * Update static DOM nodes
+     */
     $('body').delegate('a', 'click', function() {
       var activeClasses = [
         'current-menu-item',
@@ -27,9 +49,7 @@
       $('.active').removeClass(activeClasses);
       $(this).parent().addClass('active');
     });
-    /** Watch PJAX requests so metadata in document can be modified dynamically
-      */
-    $('body').bind('pjax:start', function() {
+    $(document).bind('pjax:start', function() {
       $(this).ajaxSuccess(function(event, request, settings) {
         // Body Class
         var classes = request.getResponseHeader('X-WordPress-Body-Class');

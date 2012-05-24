@@ -14,7 +14,7 @@ class RootsPJAX {
    */
   public static function load() {
     wp_enqueue_script('pjax', ROOTSPJAX_URL . '/pjax/jquery.pjax.js', array('jquery'));
-    wp_enqueue_script('roots-pjax', ROOTSPJAX_URL . '/rp.min.js', array('jquery', 'pjax'));
+    wp_enqueue_script('roots-pjax', ROOTSPJAX_URL . '/rp.min.js', array('jquery', 'pjax'), false, true);
   }
 
   /**
