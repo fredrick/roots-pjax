@@ -2,8 +2,25 @@
 /** 
  * Supply metadata
  */
+
+/** Header */
+ob_start();
+wp_head();
+$header = preg_replace(array('/\s{2,}/', '/[\t\n]/'), '|', ob_get_contents());
+ob_end_clean();
+
+/** Footer */
+ob_start();
+wp_footer();
+$footer = preg_replace(array('/\s{2,}/', '/[\t\n]/'), '|', ob_get_contents());
+ob_end_clean();
+
+/** Return HTTP headers
+  */
 ob_start();
 
+header('X-WordPress-Head: ' . $header);
+header('X-WordPress-Footer: ' . $footer);
 header('X-WordPress-Body-Class: ' . join(' ', get_body_class()));
 header('X-WordPress-Link-Canonical: ' . get_permalink());
 
