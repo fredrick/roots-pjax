@@ -44,9 +44,16 @@ class RootsPJAX {
       global $wp_query;
       $template_name = get_post_meta( $wp_query->post->ID, '_wp_page_template', true );
 
+      /** Front page
+        */
+      if (is_front_page()) {
+        // Front page, default/posts page
+        require('templates/front-page.php');
+        exit;
+      }
       /** Templated page
         */
-      if ($template_name == 'default') {
+      else if ($template_name == 'default') {
         require('templates/page.php');
         exit;
       } else if ($template_name != '') {
@@ -67,12 +74,7 @@ class RootsPJAX {
           // Search results
           require('templates/search.php');
           exit;
-        } else if (is_front_page()) {
-          // Front page, default/posts page
-          require('templates/front-page.php');
-          exit;
-        }
-        else if (is_home()) {
+        } else if (is_home()) {
           // Posts page
           require('templates/index.php');
           exit;
