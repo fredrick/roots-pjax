@@ -16,41 +16,42 @@
      */
     $('a:not(:has(img))').pjax('#wrap');
     /**
+     * Annotate AJAX requests
+     */
+    $.ajaxPrefilter(function(options, caller, xhr) {
+      xhr.url = caller.url;
+    });
+    /**
      * Filter PJAX requests
      */
-    $.ajaxPrefilter(function(options, pjax, xhr) {
-      var isPJAX = (!!options.container && !!options.clickedElement);
-      if (isPJAX && !options.crossDomain) {
-        var request = new XMLHttpRequest();
-        request.open('HEAD', pjax.url, true);
-        request.onreadystatechange = function() {
-          if (this.readyState === this.DONE) {
-            var isHTML = (request.getResponseHeader('Content-Type').indexOf('text/html') !== -1);
-            if (!isHTML) {
-              xhr.abort();
-              window.location.href = pjax.url;
-            }
-          }
-        }
-        request.send();
+    $(document).bind('pjax:beforeSend', function(event, xhr) {
+      var request = new XMLHttpRequest();
+      request.open('HEAD', xhr.url, false);
+      request.setRequestHeader('X-PJAX', true);
+      request.send();
+      var isHTML = (request.getResponseHeader('Content-Type').indexOf('text/html') !== -1);
+      var isPJAX = (request.getResponseHeader('X-PJAX') !== 'false');
+      if (isHTML && isPJAX) {
+        var activeClasses = [
+          'current-menu-item',
+          'current-menu-parent',
+          'current-menu-ancestor',
+          'current_page_item',
+          'current_page_parent',
+          'current_page_ancestor',
+          'active'
+        ].join(' ');
+        $('.active').removeClass(activeClasses);
+        $(event.relatedTarget).parent().addClass('active');
+        return true;
+      } else {
+        xhr.abort();
+        window.location.href = xhr.url;
       }
     });
     /**
      * Update static DOM nodes
      */
-    $('body').delegate('a', 'click', function() {
-      var activeClasses = [
-        'current-menu-item',
-        'current-menu-parent',
-        'current-menu-ancestor',
-        'current_page_item',
-        'current_page_parent',
-        'current_page_ancestor',
-        'active'
-      ].join(' ');
-      $('.active').removeClass(activeClasses);
-      $(this).parent().addClass('active');
-    });
     $(document).bind('pjax:start', function() {
       $(this).ajaxSuccess(function(event, request, settings) {
         // Body Class

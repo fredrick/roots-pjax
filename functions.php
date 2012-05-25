@@ -11,6 +11,7 @@ require('route.php');
 /* End custom functionality */
 
 /* Load Roots PJAX */
+add_action('pre_get_posts', 'RootsPJAX::filter');
 add_action('get_header', 'RootsPJAX::load');
-add_filter('get_header', 'RootsPJAX::render');
+add_action('get_header', 'RootsPJAX::render');
 ?>

@@ -18,6 +18,23 @@ class RootsPJAX {
   }
 
   /**
+   * Filter PJAX requests
+   */
+  public static function filter() {
+    if (array_key_exists('HTTP_X_PJAX', $_SERVER) && $_SERVER['HTTP_X_PJAX']) {
+      if (is_feed() || is_attachment()) {
+        ob_start();
+        header('X-PJAX: false');
+        ob_end_clean();
+      } else {
+        ob_start();
+        header('X-PJAX: true');
+        ob_end_clean();
+      }
+    }
+  }
+
+  /**
    * Render PJAX partials
    */
   public static function render() {
