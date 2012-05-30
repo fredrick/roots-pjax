@@ -1,3 +1,6 @@
-[submodule "pjax"]
-	path = pjax
+[submodule "js/crackle"]
+	path = js/crackle
+	url = git://github.com/wayoutmind/crackle.git
+[submodule "js/pjax"]
+	path = js/pjax
 	url = git://github.com/defunkt/jquery-pjax.git
