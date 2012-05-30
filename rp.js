@@ -4,11 +4,6 @@
  * https://github.com/wayoutmind/roots-pjax
  */
 
-// ==ClosureCompiler==
-// @compilation_level SIMPLE_OPTIMIZATIONS
-// @output_file_name rp.min.js
-// ==/ClosureCompiler==
-
 (function($){
   $(document).ready(function() {
     if (Modernizr.history) {
@@ -35,6 +30,7 @@
         var isHTML = (request.getResponseHeader('Content-Type').indexOf('text/html') !== -1);
         var isPJAX = (request.getResponseHeader('X-PJAX') !== 'false');
         if (isHTML && isPJAX) {
+          // Navigation
           var activeClasses = [
             'current-menu-item',
             'current-menu-parent',
@@ -42,6 +38,7 @@
             'current_page_item',
             'current_page_parent',
             'current_page_ancestor',
+            'active active',
             'active'
           ].join(' ');
           $('.active').removeClass(activeClasses);
