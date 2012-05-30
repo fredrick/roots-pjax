@@ -3,16 +3,18 @@
  * Supply metadata
  */
 
-/** Header */
+/** Header
+  */
 ob_start();
 wp_head();
-$header = preg_replace(array('/\s{2,}/', '/[\t\n]/'), '|', ob_get_contents());
+$header = json_encode(ob_get_contents(), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 ob_end_clean();
 
-/** Footer */
+/** Footer
+  */
 ob_start();
 wp_footer();
-$footer = preg_replace(array('/\s{2,}/', '/[\t\n]/'), '|', ob_get_contents());
+$footer = json_encode(ob_get_contents(), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 ob_end_clean();
 
 /** Return HTTP headers
