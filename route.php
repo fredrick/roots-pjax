@@ -13,8 +13,10 @@ class RootsPJAX {
    * Initialize Roots PJAX
    */
   public static function load() {
-    wp_enqueue_script('pjax', ROOTSPJAX_URL . '/pjax/jquery.pjax.js', array('jquery'), false, true);
-    wp_enqueue_script('roots-pjax', ROOTSPJAX_URL . '/rp.min.js', array('jquery', 'pjax'), false, true);
+    wp_enqueue_script('pjax', ROOTSPJAX_URL . '/js/vendor/pjax/jquery.pjax.js', array('jquery'), false, true);
+    wp_enqueue_script('crackle', ROOTSPJAX_URL . '/js/vendor/crackle/crackle.min.js', array('jquery'), false, true);
+    wp_enqueue_script('roots-pjax', ROOTSPJAX_URL . '/rp.min.js', array('jquery', 'pjax', 'crackle'), false, true);
+    wp_enqueue_script('roots-pjax-main', ROOTSPJAX_URL . '/js/main.js', array('roots-pjax'), false, true);
   }
 
   /**
