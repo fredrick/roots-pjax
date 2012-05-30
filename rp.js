@@ -7,6 +7,7 @@
 (function($){
   $(document).ready(function() {
     if (Modernizr.history) {
+      var Not = Crackle.not;
       /**
        * Load PJAX
        */
@@ -37,11 +38,12 @@
             'current-menu-ancestor',
             'current_page_item',
             'current_page_parent',
-            'current_page_ancestor',
-            'active active',
-            'active'
+            'current_page_ancestor'
           ].join(' ');
           $('.active').removeClass(activeClasses);
+          while($('.active').length > 0) {
+            $('.active').removeClass('active');
+          }
           $(event.relatedTarget).parent().addClass('active');
           return true;
         } else {
@@ -83,30 +85,45 @@
           }
           // Head
           var head = {
-            children: $.makeArray($('head').children())
-                        .map(function(child) { return child.outerHTML.replace(/'/g, '"'); }),
-            nodes: request.getResponseHeader('X-WordPress-Head')
-                    .split('|')
-                    .map(function(child) { return child.replace(/'/g, '"'); })
-                    .filter(function(child) { return child !== ''; })
+            before: Crackle.stringify($.makeArray($('head').children())).map(function(e) {
+              return e.replace(/(\r\n|\n|\r|\t)/gm,"");
+            }),
+            after: Crackle.stringify($.makeArray($(JSON.parse(request.getResponseHeader('X-WordPress-Head'))
+                      .replace(/(\r\n|\n|\r|\t)/gm,""))))
           };
-          for (var i = 0; i < head.nodes.length; i++) {
-            if (head.children.indexOf(head.nodes[i]) === -1) {
-              $('head').append(head.nodes[i]);
+          head.diff = Not(head.after).in(head.before);
+          for (var i = 0; i < head.diff.length; i++) {
+            var id = '#' + $(head.diff[i]).attr('id');
+            if ($(id).length > 0) {
+              $(id).remove();
+              $('head').append(head.diff[i]);
+            } else {
+              $('head').append(footer.diff[i]);
             }
           }
           // Footer
           var footer = {
-            children: $.makeArray($('body').children('link, script'))
-                        .map(function(child) { return child.outerHTML.replace(/'/g, '"'); }),
-            nodes: request.getResponseHeader('X-WordPress-Footer')
-                    .split('|')
-                    .map(function(child) { return child.replace(/'/g, '"'); })
-                    .filter(function(child) { return child !== ''; })
+            before: Crackle.stringify($.makeArray($('footer').nextAll())).map(function(e) {
+              return e.replace(/(\r\n|\n|\r|\t)/gm,"");
+            }),
+            after: Crackle.stringify($.makeArray($(JSON.parse(request.getResponseHeader('X-WordPress-Footer'))
+                      .replace(/(\r\n|\n|\r|\t)/gm,""))))
           };
-          for (var i = 0; i < footer.nodes.length; i++) {
-            if (footer.children.indexOf(footer.nodes[i]) === -1) {
-              $('body').append(footer.nodes[i]);
+          footer.diff = Not(footer.after).in(footer.before).map(function(e) {
+            if ($(e).attr('id') === 'wpadminbar') {
+              return Crackle.stringify($(e).removeClass());
+            }
+            else {
+              return e;
+            }
+          });
+          for (var i = 0; i < footer.diff.length; i++) {
+            var id = '#' + $(footer.diff[i]).attr('id');
+            if ($(id).length > 0) {
+              $(id).remove();
+              $('body').append(footer.diff[i]);
+            } else {
+              $('body').append(footer.diff[i]);
             }
           }
         });
