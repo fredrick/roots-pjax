@@ -50,39 +50,39 @@ class RootsPJAX {
         */
       if (is_front_page()) {
         // Front page, default/posts page
-        require('templates/front-page.php');
+        require(STYLESHEETPATH . '/templates/front-page.php');
         exit;
       }
       /** Templated page
         */
       else if ($template_name == 'default') {
-        require('templates/page.php');
+        require(STYLESHEETPATH . '/templates/page.php');
         exit;
       } else if ($template_name != '') {
-        require('templates/' . $template_name);
+        require(STYLESHEETPATH . '/templates/' . $template_name);
         exit;
       } else {
       /** Untemplated page
         */
         if (is_single()) {
           // Single page
-          require('templates/single.php');
+          require(STYLESHEETPATH . '/templates/single.php');
           exit;
         } else if (is_archive()) {
           // Archive
-          require('templates/archive.php');
+          require(STYLESHEETPATH . '/templates/archive.php');
           exit;
         } else if (is_search()) {
           // Search results
-          require('templates/search.php');
+          require(STYLESHEETPATH . '/templates/search.php');
           exit;
         } else if (is_home()) {
           // Posts page
-          require('templates/index.php');
+          require(STYLESHEETPATH . '/templates/index.php');
           exit;
         } else {
           // Untemplated default
-          require('templates/page.php');
+          require(STYLESHEETPATH . '/templates/page.php');
           exit;
         }
       }
