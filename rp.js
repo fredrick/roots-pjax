@@ -11,7 +11,7 @@
       /**
        * Load PJAX
        */
-      $('a:not(:has(img))').pjax('#wrap');
+      $('a:not(:has(img))').pjax('#wrap', { timeout: 2000 });
 
       /**
        * Annotate AJAX requests
